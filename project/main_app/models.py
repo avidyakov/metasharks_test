@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class Colour(models.Model):
@@ -25,7 +26,7 @@ class CarModel(models.Model):
 
 
 class Order(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=now)
     quantity = models.PositiveSmallIntegerField()
 
     colour = models.ForeignKey('main_app.Colour', on_delete=models.CASCADE, related_name='orders')

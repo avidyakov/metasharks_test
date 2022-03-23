@@ -30,11 +30,11 @@ class CarModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
         fields = ('id', 'name', 'brand')
-        depth = 1
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    brand = serializers.CharField(source='car_model.brand', read_only=True)
+
     class Meta:
         model = Order
-        fields = ('id', 'created', 'quantity', 'colour', 'car_model')
-        depth = 2
+        fields = ('id', 'created', 'quantity', 'colour', 'car_model', 'brand')
